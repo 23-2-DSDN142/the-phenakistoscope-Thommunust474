@@ -1,7 +1,7 @@
 const SLICE_COUNT = 18;
 
 function setup_pScope(pScope){
-  pScope.output_mode(STATIC_DISK);
+  pScope.output_mode(ANIMATED_DISK);
   pScope.scale_for_screen(true);
   pScope.draw_layer_boundaries(false);
   pScope.draw_slits(false);
@@ -12,12 +12,16 @@ pScope.load_image("earth" , "png");
 
 function setup_layers(pScope){
 
-  new PLayer(null, 10, 10, 10);  //lets us draw the whole circle background, ignoring the boundaries
+  new PLayer(null, 15, 15, 25);  //lets us draw the whole circle background, ignoring the boundaries
 
 
     var layer1 = new PLayer(sun);
     layer1.mode( RING );
     layer1.set_boundary( -150, -1050 );
+
+    var layer2 = new PLayer(alien);
+    layer2.mode( RING );
+    layer2.set_boundary( 900, 1000 );
 
     var layer4 = new PLayer(moon);
     layer4.mode( RING );
@@ -33,12 +37,12 @@ function setup_layers(pScope){
 
 }
 
-function sun(x, y, animation, pScope){
+function sun(x, y, animation, pScope){ //draw sun
   
   scale(animation.wave(0.1));
 
   fill(243, 229, 171);
-  ellipse(800,1900,400,400); // draw sun
+  ellipse(800,1850,400,400); // draw sun
 
 }
 
@@ -57,7 +61,22 @@ function centre(x, y, animation, pScope){
 
 }
 
-function rocket(x, y, animation, pScope){
+function alien(x, y, animation, pScope){ //draw UFO
+
+  scale(animation.wave(0.003));
+  noStroke();
+  fill(230,230,230);
+  ellipse(1850,150,130,160);
+  rect(1780,95,50,110);
+  stroke(0);
+  fill(240, 100, 100);
+  ellipse(1850,115,25,25);
+  ellipse(1850,150,25,25);
+  ellipse(1850,185,25,25);
+
+}
+
+function rocket(x, y, animation, pScope){ //draw Rocket
   
   scale(animation.wave(0.1));
 
