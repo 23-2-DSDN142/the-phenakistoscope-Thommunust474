@@ -1,49 +1,77 @@
-const SLICE_COUNT = 10;
+const SLICE_COUNT = 18;
 
 function setup_pScope(pScope){
-  pScope.output_mode(ANIMATED_DISK);
+  pScope.output_mode(STATIC_DISK);
   pScope.scale_for_screen(true);
-  pScope.draw_layer_boundaries(true);
+  pScope.draw_layer_boundaries(false);
+  pScope.draw_slits(false);
   pScope.set_direction(CCW);
   pScope.set_slice_count(SLICE_COUNT);
 }
 
 function setup_layers(pScope){
 
-  new PLayer(null, 220);  //lets us draw the whole circle background, ignoring the boundaries
+  new PLayer(null, 10, 10, 10);  //lets us draw the whole circle background, ignoring the boundaries
 
-  var layer1 = new PLayer(faces);
-  layer1.mode( SWIRL(5) );
-  layer1.set_boundary( 200, 1000 );
 
-  var layer2 = new PLayer(squares);
-  layer2.mode( RING );
-  layer2.set_boundary( 0, 400 );
+    var layer1 = new PLayer(sun);
+    layer1.mode( RING );
+    layer1.set_boundary( -150, -1050 );
+
+    var layer4 = new PLayer(moon);
+    layer4.mode( RING );
+    layer4.set_boundary( 150, -1200 );
+
+    var layer5 = new PLayer(rocket);
+    layer5.mode( SWIRL(1) );
+    layer5.set_boundary( 100, 700 );
+
+    var layer3 = new PLayer(centre);
+    layer3.mode( RING );
+    layer3.set_boundary( 0, 0 );
+
 }
 
-function faces(x, y, animation, pScope){
+function sun(x, y, animation, pScope){
   
-  scale(animation.frame*2);
+  scale(animation.wave(0.1));
 
-  ellipse(0,0,50,50); // draw head
-  fill(30);
-  ellipse(-10,-10,10,10); //draw eye
-  ellipse(10,-10,10,10); // draw eye
-  arc(0,10,20,10,0,180); // draw mouth
+  fill(243, 229, 171);
+  ellipse(800,1900,400,400); // draw sun
+  triangle(100,1000,2000,500);
 
 }
 
-function squares(x, y, animation, pScope){
+function moon(x, y, animation, pScope){
+  
+  scale(animation.frame*22);
+  fill(178, 190, 181);
+  ellipse(-400,300,100,100); // draw moon
 
-  // this is how you set up a background for a specific layer
-  let angleOffset = (360 / SLICE_COUNT) / 2
-  let backgroundArcStart = 270 - angleOffset;
-  let backgroundArcEnd = 270 + angleOffset;
+}
+s
+function centre(x, y, animation, pScope){
 
-  fill(66, 135, 245)
-  arc(x,y,800,800,backgroundArcStart,backgroundArcEnd); // draws "pizza slice" in the background
+  scale(animation.frame*2.5);
 
-  fill(255)
-  rect(-10,-300-animation.wave()*50,20,20) // .wave is a cosine wave btw
+  let angleOffset = (360 / SLICE_COUNT) / 2;
+
+  fill(130, 200, 80)
+  noStroke();
+   ellipse(0,0,200);
+}
+
+function rocket(x, y, animation, pScope){
+  
+  scale(animation.wave(0.1));
+
+  fill(243, 249, 240);
+  ellipse(0,0,100,150); // draw rocket main
+  fill(255,0,0);
+  ellipse(-30,70,40,70); // left rocket
+  ellipse(30,70,40,70); // right rocket
+  stroke(50,50,50);
+  fill(200,200,200);
+  ellipse(0, -40, 40, 40); // glass
 
 }
