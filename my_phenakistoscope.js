@@ -1,7 +1,7 @@
 const SLICE_COUNT = 18;
 
 function setup_pScope(pScope){
-  pScope.output_mode(ANIMATED_DISK);
+  pScope.output_mode(STATIC_DISK);
   pScope.scale_for_screen(true);
   pScope.draw_layer_boundaries(false);
   pScope.draw_slits(false);
@@ -39,7 +39,6 @@ function sun(x, y, animation, pScope){
 
   fill(243, 229, 171);
   ellipse(800,1900,400,400); // draw sun
-  triangle(100,1000,2000,500);
 
 }
 
@@ -64,11 +63,22 @@ function rocket(x, y, animation, pScope){
 
   fill(243, 249, 240);
   ellipse(0,0,100,150); // draw rocket main
-  fill(255,0,0);
+
+  fill(255,0,0); //rocket boosters
   ellipse(-30,70,40,70); // left rocket
   ellipse(30,70,40,70); // right rocket
+  fill(140,20,20);
+  ellipse(30,53,40,30);
+  ellipse(-30,53,-40,30);
   stroke(50,50,50);
-  fill(200,200,200);
-  ellipse(0, -40, 40, 40); // glass
 
+  stroke(0);
+  fill(160,160,200);
+  ellipse(0, -40, 40, 40); // glass
+  
+  stroke(0); //rocket detail
+  line(20,-5,-20,-5);
+  line(20,5,-20,5);
+  line(20,15,-20,15);
+  line(20,25,-20,25);
 }
