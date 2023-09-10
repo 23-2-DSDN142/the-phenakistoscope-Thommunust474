@@ -1,12 +1,13 @@
 const SLICE_COUNT = 18;
 
 function setup_pScope(pScope){
-  pScope.output_mode(STATIC_DISK);
+  pScope.output_mode(ANIMATED_DISK);
   pScope.scale_for_screen(true);
   pScope.draw_layer_boundaries(false);
   pScope.draw_slits(false);
   pScope.set_direction(CCW);
   pScope.set_slice_count(SLICE_COUNT);
+pScope.load_image("earth" , "png");
 }
 
 function setup_layers(pScope){
@@ -52,13 +53,9 @@ function moon(x, y, animation, pScope){
 s
 function centre(x, y, animation, pScope){
 
-  scale(animation.frame*2.5);
+    scale(1.6);
+  pScope.draw_image("earth",x,y);
 
-  let angleOffset = (360 / SLICE_COUNT) / 2;
-
-  fill(130, 200, 80)
-  noStroke();
-   ellipse(0,0,200);
 }
 
 function rocket(x, y, animation, pScope){
