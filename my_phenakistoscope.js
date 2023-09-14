@@ -14,6 +14,9 @@ function setup_layers(pScope){
 
   new PLayer(null, 15, 15, 25);  //lets us draw the whole circle background, ignoring the boundaries
 
+    var layer6 = new PLayer(stars);
+    layer6.mode( SWIRL(8) );
+    layer6.set_boundary( 100, 1050 );
 
     var layer1 = new PLayer(sun);
     layer1.mode( RING );
@@ -21,7 +24,7 @@ function setup_layers(pScope){
 
     var layer2 = new PLayer(alien);
     layer2.mode( RING );
-    layer2.set_boundary( 900, 1000 );
+    layer2.set_boundary( 800, 900 );
 
     var layer4 = new PLayer(moon);
     layer4.mode( RING );
@@ -29,7 +32,7 @@ function setup_layers(pScope){
 
     var layer5 = new PLayer(rocket);
     layer5.mode( SWIRL(1) );
-    layer5.set_boundary( 100, 700 );
+    layer5.set_boundary( 100, 1050 );
 
     var layer3 = new PLayer(centre);
     layer3.mode( RING );
@@ -37,6 +40,19 @@ function setup_layers(pScope){
 
 }
 
+function stars(x, y, animation, pScope){ //draw UFO
+
+  scale(animation.wave(5));
+
+  noStroke();
+  
+  rect(200,200,10,5);
+  angleMode(DEGREES);
+  rotate(45);
+  rect(100,90,5,10);
+
+
+}
 function sun(x, y, animation, pScope){ //draw sun
   
   scale(animation.wave(0.1));
@@ -63,16 +79,17 @@ function centre(x, y, animation, pScope){
 
 function alien(x, y, animation, pScope){ //draw UFO
 
-  scale(animation.wave(0.003));
+  scale(animation.wave(0.005));
   noStroke();
+  fill(100,130,130);
+  rect(1280,95,50,110);
   fill(230,230,230);
-  ellipse(1850,150,130,160);
-  rect(1780,95,50,110);
+  ellipse(1350,150,130,160);
   stroke(0);
   fill(240, 100, 100);
-  ellipse(1850,115,25,25);
-  ellipse(1850,150,25,25);
-  ellipse(1850,185,25,25);
+  ellipse(1350,115,25,25);
+  ellipse(1350,150,25,25);
+  ellipse(1350,185,25,25);
 
 }
 
@@ -101,3 +118,5 @@ function rocket(x, y, animation, pScope){ //draw Rocket
   line(20,15,-20,15);
   line(20,25,-20,25);
 }
+
+
